@@ -45,7 +45,7 @@ private:
     // Helper methods
     int findFreeFrame();
     int selectVictimPage();
-    void handlePageFault(size_t page_num);
+    bool handlePageFault(size_t page_num);
 };
 
 #endif // VIRTUAL_MEMORY_H

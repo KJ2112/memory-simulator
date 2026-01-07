@@ -59,30 +59,24 @@ int MemoryManager::malloc(size_t nbytes) {
         return -1;
     }
     
-    Block& chosen = blocks[block_index];
-    
-    // Track internal fragmentation if block is larger than needed
-    if (chosen.size > nbytes) {
-        internal_frag += (chosen.size - nbytes);
-    }
-    
-    // Split block if necessary
-    if (chosen.size > nbytes) {
-        Block new_block(chosen.address + nbytes, chosen.size - nbytes, true, -1);
-        chosen.size = nbytes;
+    // Split block if there's enough space for a new block
+    if (blocks[block_index].size > nbytes) {
+        Block new_block(blocks[block_index].address + nbytes, blocks[block_index].size - nbytes, true, -1);
+        blocks[block_index].size = nbytes;
         blocks.insert(blocks.begin() + block_index + 1, new_block);
     }
     
     // Allocate the block
-    chosen.is_free = false;
-    chosen.id = next_id++;
-    used_memory += chosen.size;
+    Block& allocated_block = blocks[block_index];
+    allocated_block.is_free = false;
+    allocated_block.id = next_id++;
+    used_memory += allocated_block.size;
     
-    std::cout << "Allocated block id=" << chosen.id 
+    std::cout << "Allocated block id=" << allocated_block.id 
               << " at address=0x" << std::hex << std::setfill('0') 
-              << std::setw(4) << chosen.address << std::dec << "\n";
+              << std::setw(4) << allocated_block.address << std::dec << "\n";
     
-    return chosen.id;
+    return allocated_block.id;
 }
 
 void MemoryManager::free(int block_id) {

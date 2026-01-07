@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 # Test script for Virtual Memory Simulator
 
@@ -35,7 +36,7 @@ exit
 EOF
 
 echo "Running virtual memory simulation test..."
-../bin/memsim < test_vm_input.txt > test_vm_output.txt
+../bin/memsim.exe < test_vm_input.txt > ../test_vm_output.txt
 
 echo ""
 echo "Test complete. Output saved to test_vm_output.txt"

@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 # Test script for Buddy Allocator
 
@@ -26,7 +27,7 @@ exit
 EOF
 
 echo "Running buddy allocator test..."
-../bin/memsim < test_buddy_input.txt > test_buddy_output.txt
+../bin/memsim.exe < test_buddy_input.txt > ../test_buddy_output.txt
 
 echo ""
 echo "Test complete. Output saved to test_buddy_output.txt"

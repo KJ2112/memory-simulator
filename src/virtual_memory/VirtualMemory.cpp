@@ -54,30 +54,30 @@ int VirtualMemory::selectVictimPage() {
     return -1;
 }
 
-void VirtualMemory::handlePageFault(size_t page_num) {
+bool VirtualMemory::handlePageFault(size_t page_num) {
     page_faults++;
     
     // Try to find a free frame
     int frame = findFreeFrame();
     
-    if (frame == -1) {
-        // No free frame, must evict a page
+    if (frame == -1) { // No free frame
         int victim_page = selectVictimPage();
         
-        if (victim_page != -1) {
-            frame = page_table[victim_page].frame;
-            page_table[victim_page].valid = false;
-            page_table[victim_page].frame = -1;
-            
-            std::cout << "Page fault: evicting page " << victim_page 
-                      << " from frame " << frame << "\n";
-        } else {
-            std::cout << "Error: Cannot find victim page\n";
-            return;
+        if (victim_page == -1) {
+            std::cout << "Error: Cannot find victim page and no free frames\n";
+            return false; // Failed to handle page fault
         }
+        
+        frame = page_table[victim_page].frame;
+        page_table[victim_page].valid = false;
+        page_table[victim_page].frame = -1;
+        
+        std::cout << "Page fault: evicting page " << victim_page 
+                  << " from frame " << frame << "\n";
     }
     
-    // Load the page into the frame
+    // At this point, 'frame' must be a valid frame number.
+
     frame_used[frame] = true;
     page_table[page_num].valid = true;
     page_table[page_num].frame = frame;
@@ -89,6 +89,8 @@ void VirtualMemory::handlePageFault(size_t page_num) {
     
     std::cout << "Page fault: loading page " << page_num 
               << " into frame " << frame << "\n";
+
+    return true; // Successfully handled page fault
 }
 
 size_t VirtualMemory::translate(size_t virtual_address) {
@@ -98,7 +100,7 @@ size_t VirtualMemory::translate(size_t virtual_address) {
     if (page_num >= num_pages) {
         std::cout << "Error: Invalid virtual address 0x" << std::hex 
                   << virtual_address << std::dec << "\n";
-        return 0;
+        return SIZE_MAX; // Return error code for invalid address
     }
     
     if (page_table[page_num].valid) {
@@ -116,8 +118,12 @@ size_t VirtualMemory::translate(size_t virtual_address) {
         return physical_address;
     } else {
         // Page fault
-        handlePageFault(page_num);
+        if (!handlePageFault(page_num)) {
+            // If handling the page fault failed, return an error
+            return SIZE_MAX; 
+        }
         
+        // Page fault handled successfully, now we can translate
         int frame = page_table[page_num].frame;
         size_t physical_address = frame * page_size + offset;
         

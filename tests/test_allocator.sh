@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 # Test script for Standard Memory Allocator
 
@@ -32,7 +33,7 @@ exit
 EOF
 
 echo "Running test with first_fit, best_fit, and worst_fit..."
-../bin/memsim < test_allocator_input.txt > test_allocator_output.txt
+../bin/memsim.exe < test_allocator_input.txt > ../test_allocator_output.txt
 
 echo ""
 echo "Test complete. Output saved to test_allocator_output.txt"

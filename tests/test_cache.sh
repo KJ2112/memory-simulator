@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 # Test script for Cache Simulator
 
@@ -31,7 +32,7 @@ exit
 EOF
 
 echo "Running cache simulation test..."
-../bin/memsim < test_cache_input.txt > test_cache_output.txt
+../bin/memsim.exe < test_cache_input.txt > ../test_cache_output.txt
 
 echo ""
 echo "Test complete. Output saved to test_cache_output.txt"

@@ -1,0 +1,85 @@
+Memory Management Simulator
+Type 'help' for commands
+
+memsim> Switched to Buddy Allocator mode
+memsim> Buddy allocator initialized: 1024 bytes
+memsim> Allocated block id=1 at address=0x0000 (requested: 50, actual: 64 bytes)
+memsim> Allocated block id=2 at address=0x0080 (requested: 100, actual: 128 bytes)
+memsim> Allocated block id=3 at address=0x0100 (requested: 200, actual: 256 bytes)
+memsim> Allocated block id=4 at address=0x0200 (requested: 75, actual: 128 bytes)
+memsim> 
+=== Buddy Allocator Memory Dump ===
+Allocated blocks:
+  [0x0000 - 0x003f] USED (id=1, 64 bytes)
+  [0x0080 - 0x00ff] USED (id=2, 128 bytes)
+  [0x0100 - 0x01ff] USED (id=3, 256 bytes)
+  [0x0200 - 0x027f] USED (id=4, 128 bytes)
+Free blocks:
+  [0x0040 - 0x007f] FREE (64 bytes)
+  [0x0280 - 0x02ff] FREE (128 bytes)
+  [0x0300 - 0x03ff] FREE (256 bytes)
+===================================
+
+memsim> 
+=== Buddy Allocator Statistics ===
+Total memory: 1024 bytes
+Used memory: 576 bytes
+Free memory: 448 bytes
+Memory utilization: 56%
+Internal fragmentation: 151 bytes
+Allocation requests: 4
+Failed requests: 0
+Success rate: 100%
+==================================
+
+memsim> Block 2 freed and merged
+memsim> 
+=== Buddy Allocator Memory Dump ===
+Allocated blocks:
+  [0x0000 - 0x003f] USED (id=1, 64 bytes)
+  [0x0100 - 0x01ff] USED (id=3, 256 bytes)
+  [0x0200 - 0x027f] USED (id=4, 128 bytes)
+Free blocks:
+  [0x0040 - 0x007f] FREE (64 bytes)
+  [0x0280 - 0x02ff] FREE (128 bytes)
+  [0x0080 - 0x00ff] FREE (128 bytes)
+  [0x0300 - 0x03ff] FREE (256 bytes)
+===================================
+
+memsim> Block 1 freed and merged
+memsim> 
+=== Buddy Allocator Memory Dump ===
+Allocated blocks:
+  [0x0100 - 0x01ff] USED (id=3, 256 bytes)
+  [0x0200 - 0x027f] USED (id=4, 128 bytes)
+Free blocks:
+  [0x0280 - 0x02ff] FREE (128 bytes)
+  [0x0300 - 0x03ff] FREE (256 bytes)
+  [0x0000 - 0x00ff] FREE (256 bytes)
+===================================
+
+memsim> Allocated block id=5 at address=0x0300 (requested: 150, actual: 256 bytes)
+memsim> 
+=== Buddy Allocator Memory Dump ===
+Allocated blocks:
+  [0x0100 - 0x01ff] USED (id=3, 256 bytes)
+  [0x0200 - 0x027f] USED (id=4, 128 bytes)
+  [0x0300 - 0x03ff] USED (id=5, 256 bytes)
+Free blocks:
+  [0x0280 - 0x02ff] FREE (128 bytes)
+  [0x0000 - 0x00ff] FREE (256 bytes)
+===================================
+
+memsim> 
+=== Buddy Allocator Statistics ===
+Total memory: 1024 bytes
+Used memory: 640 bytes
+Free memory: 384 bytes
+Memory utilization: 62%
+Internal fragmentation: 257 bytes
+Allocation requests: 5
+Failed requests: 0
+Success rate: 100%
+==================================
+
+memsim> Exiting simulator...

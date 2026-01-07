@@ -1,0 +1,46 @@
+Memory Management Simulator
+Type 'help' for commands
+
+memsim> Switched to Virtual Memory mode
+memsim> Virtual memory initialized: 64 pages, 256 bytes per page, 8 frames
+memsim> Page replacement policy set to: FIFO
+memsim> Page fault: loading page 0 into frame 0
+Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> 
+=== Virtual Memory Statistics ===
+Total page accesses: 11
+Page hits: 10
+Page faults: 1
+Page hit ratio: 90.91%
+Page fault ratio: 9.09%
+=================================
+
+memsim> Virtual memory statistics reset
+memsim> Page replacement policy set to: LRU
+memsim> Page fault: loading page 0 into frame 0
+Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> Virtual address 0x0 -> Physical address 0x0
+memsim> 
+=== Virtual Memory Statistics ===
+Total page accesses: 6
+Page hits: 5
+Page faults: 1
+Page hit ratio: 83.33%
+Page fault ratio: 16.67%
+=================================
+
+memsim> Exiting simulator...

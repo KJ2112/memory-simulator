@@ -1,0 +1,114 @@
+Memory Management Simulator
+Type 'help' for commands
+
+memsim> Switched to Standard Allocator mode
+memsim> Memory initialized: 1024 bytes
+memsim> Allocation strategy set to: First Fit
+memsim> Allocated block id=1 at address=0x0000
+memsim> Allocated block id=2 at address=0x0064
+memsim> Allocated block id=3 at address=0x012c
+memsim> 
+=== Memory Dump ===
+[0x0000 - 0x0063] USED (id=1) [100 bytes]
+[0x0064 - 0x012b] USED (id=2) [200 bytes]
+[0x012c - 0x01c1] USED (id=3) [150 bytes]
+[0x01c2 - 0x03ff] FREE [574 bytes]
+===================
+
+memsim> 
+=== Memory Statistics ===
+Total memory: 1024 bytes
+Used memory: 450 bytes
+Free memory: 574 bytes
+Memory utilization: 43%
+Internal fragmentation: 0 bytes
+External fragmentation: 0%
+Allocation requests: 3
+Failed requests: 0
+Success rate: 100%
+========================
+
+memsim> Block 2 freed and merged
+memsim> 
+=== Memory Dump ===
+[0x0000 - 0x0063] USED (id=1) [100 bytes]
+[0x0064 - 0x012b] FREE [200 bytes]
+[0x012c - 0x01c1] USED (id=3) [150 bytes]
+[0x01c2 - 0x03ff] FREE [574 bytes]
+===================
+
+memsim> Allocated block id=4 at address=0x0064
+memsim> 
+=== Memory Dump ===
+[0x0000 - 0x0063] USED (id=1) [100 bytes]
+[0x0064 - 0x0095] USED (id=4) [50 bytes]
+[0x0096 - 0x012b] FREE [150 bytes]
+[0x012c - 0x01c1] USED (id=3) [150 bytes]
+[0x01c2 - 0x03ff] FREE [574 bytes]
+===================
+
+memsim> 
+=== Memory Statistics ===
+Total memory: 1024 bytes
+Used memory: 300 bytes
+Free memory: 724 bytes
+Memory utilization: 29%
+Internal fragmentation: 0 bytes
+External fragmentation: 20%
+Allocation requests: 4
+Failed requests: 0
+Success rate: 100%
+========================
+
+memsim> Allocation strategy set to: Best Fit
+memsim> Allocated block id=5 at address=0x0096
+memsim> 
+=== Memory Dump ===
+[0x0000 - 0x0063] USED (id=1) [100 bytes]
+[0x0064 - 0x0095] USED (id=4) [50 bytes]
+[0x0096 - 0x00f9] USED (id=5) [100 bytes]
+[0x00fa - 0x012b] FREE [50 bytes]
+[0x012c - 0x01c1] USED (id=3) [150 bytes]
+[0x01c2 - 0x03ff] FREE [574 bytes]
+===================
+
+memsim> 
+=== Memory Statistics ===
+Total memory: 1024 bytes
+Used memory: 400 bytes
+Free memory: 624 bytes
+Memory utilization: 39%
+Internal fragmentation: 0 bytes
+External fragmentation: 8%
+Allocation requests: 5
+Failed requests: 0
+Success rate: 100%
+========================
+
+memsim> Allocation strategy set to: Worst Fit
+memsim> Allocated block id=6 at address=0x01c2
+memsim> 
+=== Memory Dump ===
+[0x0000 - 0x0063] USED (id=1) [100 bytes]
+[0x0064 - 0x0095] USED (id=4) [50 bytes]
+[0x0096 - 0x00f9] USED (id=5) [100 bytes]
+[0x00fa - 0x012b] FREE [50 bytes]
+[0x012c - 0x01c1] USED (id=3) [150 bytes]
+[0x01c2 - 0x0211] USED (id=6) [80 bytes]
+[0x0212 - 0x03ff] FREE [494 bytes]
+===================
+
+memsim> 
+=== Memory Statistics ===
+Total memory: 1024 bytes
+Used memory: 480 bytes
+Free memory: 544 bytes
+Memory utilization: 46%
+Internal fragmentation: 0 bytes
+External fragmentation: 9%
+Allocation requests: 6
+Failed requests: 0
+Success rate: 100%
+========================
+
+memsim> Exiting simulator...

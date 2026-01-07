@@ -293,12 +293,17 @@ int main() {
         // Virtual memory commands
         else if (cmd == "translate") {
             size_t virt_addr;
-            iss >> virt_addr;
+            iss >> std::hex >> virt_addr;
             
             if (mode == VIRTUAL_MEMORY_SIM && vm) {
                 size_t phys_addr = vm->translate(virt_addr);
-                std::cout << "Virtual address 0x" << std::hex << virt_addr 
-                          << " -> Physical address 0x" << phys_addr << std::dec << "\n";
+                if (phys_addr == SIZE_MAX) {
+                    std::cout << "Error: Failed to translate virtual address 0x" << std::hex << virt_addr << std::dec << "\n";
+                } else {
+                    std::cout << "Virtual address 0x" << std::hex << virt_addr 
+                              << std::dec << " -> Physical address 0x" << std::hex << phys_addr 
+                              << std::dec << "\n";
+                }
             }
             else {
                 std::cout << "Error: Not in VM mode or not initialized\n";
